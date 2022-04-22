@@ -2,14 +2,14 @@
 # all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
 input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
 
-type User @model {
+type User @model @searchable{
     email: String! @primaryKey
     name: String!
     isAdmin: Boolean!
     orders: [Order] @manyToMany(relationName: "UserOrderMapping")
 }
 
-type Order @model {
+type Order @model @searchable{
     orderNum: String! @primaryKey
     description: String
     users: [User] @manyToMany(relationName: "UserOrderMapping")
